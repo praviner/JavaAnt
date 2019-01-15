@@ -1,0 +1,79 @@
+<project name="test" default="main" basedir = ".">
+	
+	<property file = "build.properties"/> 
+	
+	<target name = "compile">
+		<delete dir="${builddir}"/>
+		<echo>Value of x is ${x} </echo>
+		<mkdir dir="${builddir}/${classdir}"/>
+		<javac srcdir = "${srcdir}" destdir = "${builddir}/${classdir}"/>
+		
+	</target>
+	
+	<target name = "package" >
+		<mkdir dir = "${builddir}/${jardir}"/>
+		<jar basedir = "${builddir}/${classdir}" destfile = "${builddir}/${jardir}/${filename}.jar">
+			<manifest>
+				<attribute name="Main-Class" value="${filename}"/>
+			</manifest>
+		</jar>
+		
+	</target>
+	
+	<target name="run" >
+		<java jar = "${builddir}/${jardir}/${filename}.jar" fork='true'/>
+	
+	</target>
+	
+	<target name="main" >
+		<antcall target = "compile">
+			<param name="x" value="1000"/>
+		</antcall>		
+		<antcall target ="package"/>
+		<antcall target ="run"/>
+	</target>
+	
+	<target name ="test" >
+		<echo>Advanced tasks</echo>
+		
+		<exec OS="Windows 7" executable ="cmd.exe">
+			<arg line = "/c dir"/>
+			 
+		
+		</exec>
+		
+		
+		
+		<!--		
+		<unzip src="build.zip" dest = "build"/>
+		
+		
+		
+		<zip basedir = "build" destfile ="build.zip"/>
+		-->
+			
+		<!--
+		<echo> x value is ${x} </echo>
+		 <mkdir dir="build1/classes"/> 
+		<delete dir="build1"/> 
+		<copy file="Hi.txt" tofile="Hello.txt"/> 
+		<copy file="Hi.txt" todir="Build1"/> 
+		
+		<copy todir="build1">
+			<fileset dir="src"/>
+		</copy> 
+		
+		<copy todir="build1">
+			<fileset dir="src">
+				<include name = "*.txt"/>
+			</fileset>
+		</copy>  
+		
+		<move file="Hi.txt" todir="Build1"/> 
+		-->
+			
+	</target>
+	
+	
+	
+</project>
