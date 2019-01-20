@@ -26,8 +26,8 @@
 	
 	<target name="main" >
 		<antcall target = "compile"/>
-	<!--	<antcall target ="package"/>  
-		<antcall target ="run"/> -->
+		<antcall target ="package"/>  
+		<antcall target ="run"/> 
 	</target>
 
 	
