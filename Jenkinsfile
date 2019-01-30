@@ -15,9 +15,14 @@ node {
             dockerfile {filename 'Dockerfile'}
 	  
 	      }
-
+	steps {
+        	echo "Build Processes  Any assembly activities that chains source together, if doesnt apply please leave a 'not applicable' echo"
+        	sh "java -version"
+        	sh "ant build.xml"
+   	}
    }
 
+	
    stage('Results') {
 
     }
