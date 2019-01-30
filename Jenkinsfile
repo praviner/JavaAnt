@@ -2,17 +2,22 @@ node {
    
    stage('Preparation') { // for display purposes
       // Get some code from a GitHub repository
-      git 'https://github.com/praviner/JavaAnt'
+      //git 'https://github.com/praviner/JavaAnt'
    
    }
    
    stage('Build') {
 
-       withAnt(installation: 'MyAnt') {
-            sh "ant main"
-        }
+       //withAnt(installation: 'MyAnt') {
+       //     sh "ant main"
+         agent { 
+	    
+            dockerfile {filename 'Dockerfile'}
+	  
+	      }
 
    }
+
    stage('Results') {
 
     }
