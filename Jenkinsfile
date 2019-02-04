@@ -6,6 +6,9 @@ node {
    
    }
    
+   
+
+   /*
    stage('Build') {
 
        withAnt(installation: 'MyAnt') {
@@ -13,7 +16,10 @@ node {
         }
 
    }
+   
    stage('Results') {
 
     }
+    */
+   
 }
