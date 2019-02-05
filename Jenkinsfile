@@ -5,7 +5,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo Fire
-                // sh "ant build.xml"
+                sh "ant build.xml"
             }
         }
     }
