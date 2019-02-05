@@ -1,20 +1,29 @@
-FROM ubuntu:trusty
+FROM centos:centos6
 
-# sample
-# Install Java.
-RUN \
-  apt-get update && \
-  apt-get install -y openjdk-6-jdk && \
-  apt-get install -y wget && \
-  rm -rf /var/lib/apt/lists/*
+ENV JAVA16_HOME /root/jdk/jdk1.6.0_45
 
-# Define working directory.
-WORKDIR /data
+ADD INFRA/BUILD/jdk-6u45-linux-x64.bin  .
 
-COPY . .
+USER root
+
+RUN    mkdir /root/jdk && \
+    chmod +x jdk-6u45-linux-x64.bin && \
+    ./jdk-6u45-linux-x64.bin && \
+    rm jdk-6u45-linux-x64.bin && \
+    mv jdk1.6.0_45 /root/jdk
+
+RUN  yum -y install wget 
+
+ENV PATH=$PATH:/root/jdk/jdk1.6.0_45/bin
+
+
+
+
+  
+
 
 # Define commonly used JAVA_HOME variable
-ENV JAVA_HOME /usr/lib/jvm/java-6-openjdk-amd64
+ENV JAVA_HOME /root/jdk/jdk1.6.0_45/
 
 # Installs Ant
 ENV ANT_VERSION 1.8.4
@@ -25,4 +34,3 @@ RUN cd && \
     rm apache-ant-${ANT_VERSION}-bin.tar.gz
 ENV ANT_HOME /opt/ant
 ENV PATH ${PATH}:/opt/ant/bin
-
