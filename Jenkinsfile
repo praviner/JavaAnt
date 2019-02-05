@@ -4,8 +4,8 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                
-                sh "ant build.xml"
+                # Fire
+                // sh "ant build.xml"
             }
         }
     }
