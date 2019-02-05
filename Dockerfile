@@ -1,29 +1,18 @@
-FROM centos:centos6
+# Author: Bruno Borges <bruno.borges@oracle.com>
+#
+# DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
+# 
+# Copyright (c) 2015 Oracle and/or its affiliates. All rights reserved.
+# 
+FROM oraclelinux:7-slim
 
-ENV JAVA16_HOME /root/jdk/jdk1.6.0_45
+MAINTAINER Bruno Borges <bruno.borges@oracle.com>
 
-ADD INFRA/BUILD/jdk-6u45-linux-x64.bin  .
+RUN yum -y install java-1.6.0-openjdk-devel && rm -rf /var/cache/yum
 
-USER root
+ENV JAVA_HOME /usr/lib/jvm/java-openjdk
 
-RUN    mkdir /root/jdk && \
-    chmod +x jdk-6u45-linux-x64.bin && \
-    ./jdk-6u45-linux-x64.bin && \
-    rm jdk-6u45-linux-x64.bin && \
-    mv jdk1.6.0_45 /root/jdk
-
-RUN  yum -y install wget 
-
-ENV PATH=$PATH:/root/jdk/jdk1.6.0_45/bin
-
-
-
-
-  
-
-
-# Define commonly used JAVA_HOME variable
-ENV JAVA_HOME /root/jdk/jdk1.6.0_45/
+CMD ["java", "-version"]
 
 # Installs Ant
 ENV ANT_VERSION 1.8.4
