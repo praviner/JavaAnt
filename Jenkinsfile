@@ -27,6 +27,5 @@ options {
         }      
     
     
-    
-    
+    } // stages
 } //pipeline
