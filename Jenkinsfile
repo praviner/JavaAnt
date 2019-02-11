@@ -22,7 +22,7 @@ options {
 	stage('Build') {    
       		steps {
         	echo "Build Processes  Any assembly activities that chains source together, if doesnt apply please leave a 'not applicable' echo"
-        	sh "ant -f build.xml clean-build"
+        	sh "ant -f build.xml"
       		}
         }      
     
