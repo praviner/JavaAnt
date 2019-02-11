@@ -16,6 +16,8 @@ options {
             steps {
               echo "Initialize"
             }
+	 }
+		 
 		 
 	stage('Build') {    
       		steps {
@@ -23,7 +25,7 @@ options {
         	sh "ant -f build.xml clean-build"
       		}
         }      
-    }
+    
     
     
     
